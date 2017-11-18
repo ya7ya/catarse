@@ -7,6 +7,7 @@ if (!RedactorPlugins) var RedactorPlugins = {};
 		return {
 			reUrlYoutube: /https?:\/\/(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)(?![?=&+%\w.-]*(?:['"][^<>]*>|<\/a>))[?=&+%\w.-]*/ig,
 			reUrlVimeo: /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/,
+			reUrlParatii: /https?:\/\/(player\.)?paratii.video\/(\d+)($|\/)/,
 			getTemplate: function()
 			{
 				return String()
@@ -55,6 +56,10 @@ if (!RedactorPlugins) var RedactorPlugins = {};
 					else if (data.match(this.video.reUrlVimeo))
 					{
 						data = data.replace(this.video.reUrlVimeo, iframeStart + '//player.vimeo.com/video/$2' + iframeEnd);
+					}
+					else if (data.match(this.video.reUrlParatii))
+					{
+						data = data.replace(this.video.reUrlParatii, iframeStart + '//player.paratii.video/play/$2' + iframeEnd);
 					}
 				}
 
